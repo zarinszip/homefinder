@@ -1,41 +1,10 @@
 #:schema https://json.schemastore.org/pyproject.json
 ##
-## Python project for 'home-finder'
+## The `homefinder` project
 ##
 
 
-[build-system]
+[tool.uv.workspace]
 
-requires      = [ 'poetry-core ~= 2.0' ]
-build-backend = 'poetry.core.masonry.api'
-
-
-[project]
-
-name    = 'home-finder'
-version = '0.0.1'
-
-description = 'TODO'
-readme      = 'readme.md'
-license     = 'GPL-2.0-only'
-
-requires-python = '~= 3.12'
-dependencies    = [
-
-]
-
-[[project.authors]]
-
-name  = 'Rauls'
-email = 'TODO@example.com'
-
-[[project.authors]]
-
-name  = 'Martins Zariņš'
-email = 'pasts@zarins.zip'
-
-
-[tool.poetry]
-
-requires-poetry = '~= 2.0'
+members = [ './packages/*' ]
 

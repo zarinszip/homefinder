@@ -1,35 +1,44 @@
 ##
-## Development flake for 'home-finder'
+## `homefinder` development flake
 ##
 
 {
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-        pyproject.url = "github:pyproject-nix/pyproject.nix";
-        pyproject.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = { self, nixpkgs, pyproject }: let
-        inherit (nixpkgs)               lib;
-        inherit (pyproject.lib.project) loadPoetryPyproject;
-
+    outputs = { self, nixpkgs }: let
+        inherit (nixpkgs) lib;
         systems = [ "x86_64-linux" ];
-        project = loadPoetryPyproject { projectRoot = ./.; };
     in {
         devShells = lib.genAttrs systems (system: let
             pkgs   = import nixpkgs { inherit system; };
             python = pkgs.python3;
+            uv     = python.pkgs.uv;
 
-            python-with-deps = python.withPackages (
-                project.renderers.withPackages { inherit python; }
-            );
-            packages = [
-                python-with-deps
-                pkgs.poetry
-            ];
+            packages  = [ uv ];
+            shellHook = ''
+                leave() {
+                	rm -r ./.venv
+                	exit "$1"
+                }
+
+                uv venv \
+                  --python ${ python }/bin/python \
+                  --allow-existing -q \
+                || leave "$?"
+
+                uv sync --frozen --offline &> /dev/null \
+                || uv sync --frozen \
+                || leave "$?"
+
+                unset -f leave
+                . ./.venv/bin/activate
+            '';
         in {
-            default = pkgs.mkShell { inherit packages; };
+            default = pkgs.mkShell {
+                inherit packages shellHook;
+            };
         });
 };  }
 
