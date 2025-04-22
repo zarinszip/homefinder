@@ -1,0 +1,13 @@
+##
+## gitignore(5)
+##
+
+#
+# Python
+# - Virtual environments
+# - Generated cache
+#
+
+.venv
+__pycache__
+
