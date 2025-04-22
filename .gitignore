@@ -4,10 +4,13 @@
 
 #
 # Python
-# - Virtual environments
 # - Generated cache
+# - Virtual environments
+# - Package builds
 #
 
-.venv
 __pycache__
+
+/.venv
+/dist
 
