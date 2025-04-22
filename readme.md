@@ -1,2 +1,2 @@
-# `home-finder`
+# `homefinder`
 

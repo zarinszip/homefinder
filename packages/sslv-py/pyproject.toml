@@ -1,0 +1,41 @@
+#:schema https://json.schemastore.org/pyproject.json
+##
+## `ss.lv` Python bindings
+##
+
+
+[build-system]
+
+requires      = [ 'flit_core ~= 3.12' ]
+build-backend = 'flit_core.buildapi'
+
+
+[project]
+
+name    = 'sslv-py'
+version = '0.0.1'
+
+readme      = 'readme.md'
+description = '`ss.lv` Python bindings'
+license     = 'GPL-2.0-only'
+
+requires-python = '~= 3.12'
+dependencies    = [
+	'homefinder-lib',
+	'requests ~= 2.32.0'
+]
+
+[tool.flit.module]
+
+name = 'sslv'
+
+[[project.authors]]
+
+name  = 'Martins Zariņš'
+email = 'pasts@zarins.zip'
+
+[[project.authors]]
+
+name  = 'Rauls ...'
+email = 'rauls@example.com'
+

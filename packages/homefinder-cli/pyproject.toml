@@ -1,0 +1,36 @@
+#:schema https://json.schemastore.org/pyproject.json
+##
+## `homefinder` command-line interface
+##
+
+
+[build-system]
+
+requires      = [ 'flit_core ~= 3.12' ]
+build-backend = 'flit_core.buildapi'
+
+
+[project]
+
+name    = 'homefinder_cli'
+version = '0.0.1'
+
+readme      = './readme.md'
+description = '`homefinder` command-line interface'
+license     = 'GPL-2.0-only'
+
+requires-python = '~= 3.12'
+dependencies    = [
+	'homefinder-lib'
+]
+
+[[project.authors]]
+
+name  = 'Martins Zariņš'
+email = 'pasts@zarins.zip'
+
+[[project.authors]]
+
+name  = 'Rauls ...'
+email = 'rauls@example.com'
+
