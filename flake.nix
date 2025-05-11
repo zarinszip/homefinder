@@ -18,14 +18,15 @@
 
             packages  = [ uv ];
             shellHook = ''
+                cd "$(git rev-parse --show-toplevel)"
+
                 leave() {
-                	rm -r ./.venv
+                	rm -rf ./.venv
                 	exit "$1"
                 }
 
-                uv venv \
-                  --python ${ python }/bin/python \
-                  --allow-existing -q \
+                uv venv -q \
+                  --python '${ python }'/bin/python \
                 || leave "$?"
 
                 uv sync --frozen --offline &> /dev/null \
@@ -33,7 +34,9 @@
                 || leave "$?"
 
                 unset -f leave
+
                 . ./.venv/bin/activate
+                cd "$OLDPWD"
             '';
         in {
             default = pkgs.mkShell {
