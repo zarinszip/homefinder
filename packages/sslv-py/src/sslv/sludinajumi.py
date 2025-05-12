@@ -1,8 +1,8 @@
 from typing import *
 
-import homefinder_lib as lib
+import homefinder as hf
 
-class Sludinajumi(lib.Source):
+class Sludinajumi(hf.Source):
 	'''
 	`homefinder` source for SS.lv adverts.
 
@@ -23,11 +23,11 @@ class Sludinajumi(lib.Source):
 	name:       Final[str] = 'SS.lv Sludinājumi'
 	public_url: Final[str] = 'https://www.ss.lv'
 
-	async def search(self, params) -> lib.SearchIter:
+	async def search(self, params) -> hf.SearchIter:
 		# TODO
 		pass
 
-	async def get_home(self, id: str) -> Optional[lib.Home]:
+	async def get_home(self, id: str) -> Optional[hf.Home]:
 		# TODO
 		pass
 

@@ -21,6 +21,9 @@ license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
 
+[tool.flit.module]
+
+name = 'homefinder'
 
 [[project.authors]]
 
