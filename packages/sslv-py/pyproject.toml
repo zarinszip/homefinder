@@ -1,6 +1,6 @@
 #:schema https://json.schemastore.org/pyproject.json
 ##
-## `ss.lv` Python bindings
+## `ss.lv` Python bindings for real estate
 ##
 
 
@@ -16,13 +16,13 @@ name    = 'sslv-py'
 version = '0.0.1'
 
 readme      = 'readme.md'
-description = '`ss.lv` Python bindings'
+description = '`ss.lv` Python binding for real estate'
 license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
 dependencies    = [
-	'homefinder-lib',
-	'requests ~= 2.32.0'
+	'homefinder-lib ~= 0.0',
+	'aiohttp ~= 3.11.0'
 ]
 
 [tool.flit.module]
