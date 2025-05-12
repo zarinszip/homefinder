@@ -1,8 +1,10 @@
-from typing import *
+from dataclasses import *
+from typing      import *
 
-class Home(Protocol):
+@dataclass
+class Home:
 	'''
-	Protocol of a house.
+	Dataclass of a house.
 
 	TODO: Add attributes.
 
