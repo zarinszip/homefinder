@@ -1,5 +1,7 @@
 from typing import *
 
+from .home import Home
+
 type SearchParams = Optional[Mapping[str, Any]]
 type SearchIter   = AsyncIterator[Home]
 
@@ -29,7 +31,7 @@ class Source(Protocol):
 		'''
 		pass
 
-	async def get_home(id: Any) -> Home:
+	async def get_home(id: Any) -> Optional[Home]:
 		'''Return an instance of Home for the given identifier.'''
 		pass
 
