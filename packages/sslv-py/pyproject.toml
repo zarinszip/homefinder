@@ -1,6 +1,6 @@
 #:schema https://json.schemastore.org/pyproject.json
 ##
-## `ss.lv` Python bindings for real estate
+## Find homes on SS.lv.
 ##
 
 
@@ -16,7 +16,7 @@ name    = 'sslv-py'
 version = '0.0.1'
 
 readme      = 'readme.md'
-description = '`ss.lv` Python binding for real estate'
+description = 'Find homes on SS.lv.'
 license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
