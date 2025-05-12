@@ -17,7 +17,7 @@ class Source(Protocol):
 	name:       str
 	public_url: str
 
-	async def search(params: SearchParams) -> SearchIter:
+	async def search(self, params: SearchParams) -> SearchIter:
 		'''
 		Find Homes.
 
@@ -31,7 +31,7 @@ class Source(Protocol):
 		'''
 		pass
 
-	async def get_home(id: Any) -> Optional[lib.Home]:
+	async def get_home(self, id: Any) -> Optional[lib.Home]:
 		'''Return an instance of Home for the given identifier.'''
 		pass
 
