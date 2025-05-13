@@ -9,8 +9,23 @@ class Home:
 	TODO: Add attributes.
 
 	Attributes:
-		id: An unique, idempotent home identifier.
+		id: A unique, idempotent home identifier.
+		city: ...
+		district: ...
+		street: ...
+		area: Area for the real estate measured in m².
+		price: Flat or monthly price for the real estate. Can include price per square metre.
+		facilities: Additional facilities that may come with the real estate.
 	'''
 
-	id: Any
+	id: Optional[str]
+	city: Optional[str]				# e.g. "Riga"
+	district: Optional[str]			# e.g. "Centre"
+	street: Optional[str]			# e.g. "Klusa 7"
+	area: Optional[str] 			# in m²
+	price: Optional[str]			# in €
+	facilities: Optional[str]		# e.g. "Balcony, Parking"
+
+	def __str__(self):
+		return f'id: {self.id}\ncity: {self.city}\ndistrict: {self.district}\nstreet: {self.street}\narea: {self.area}\nprice: {self.price}\nfacilities: {self.facilities}'
 
