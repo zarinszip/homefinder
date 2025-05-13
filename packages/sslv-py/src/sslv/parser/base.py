@@ -6,7 +6,7 @@ class HtmlStreamBuilder[T](parser.HTMLParser):
 	'''A HTMLParser that may return something as it's fed.'''
 
 	def feed(self, data: str) -> Optional[T]:
-		parser.HtmlParser.feed(self, data)
+		parser.HTMLParser.feed(self, data)
 		return None
 
 class HtmlStreamIter[T](parser.HTMLParser, AsyncIterable[T]):
