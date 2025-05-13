@@ -1,10 +1,15 @@
 '''Webscraping and parsing modules for SS.lv.'''
 
+from .base import (
+	HtmlStreamBuilder,
+	HtmlStreamIter
+)
+
 from .advert import (
-	AdvertParser
+	AdvertBuilder
 )
 
 from .search import (
-	SearchParser
+	SearchIter
 )
 
