@@ -10,6 +10,7 @@ from .advert import (
 )
 
 from .search import (
-	SearchIter
+	SearchIter,
+	SearchYield
 )
 

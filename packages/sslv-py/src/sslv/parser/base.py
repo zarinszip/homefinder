@@ -5,8 +5,11 @@ from html import parser
 class HtmlStreamBuilder[T](parser.HTMLParser):
 	'''A HTMLParser that may return something as it's fed.'''
 
+	def __init__(self):
+		parser.HTMLParser.__init__(self)
+
 	def feed(self, data: str) -> Optional[T]:
-		parser.HtmlParser.feed(self, data)
+		parser.HTMLParser.feed(self, data)
 		return None
 
 class HtmlStreamIter[T](parser.HTMLParser, AsyncIterable[T]):
@@ -15,5 +18,7 @@ class HtmlStreamIter[T](parser.HTMLParser, AsyncIterable[T]):
 
 	Should probably internally use asyncio.Queue.
 	'''
-	pass
+
+	def __init__(self):
+		parser.HTMLParser.__init__(self)
 
