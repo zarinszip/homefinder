@@ -1,5 +1,4 @@
-#from dataclasses import *
-from typing      import *
+from typing import *
 
 import asyncio
 import re
@@ -12,7 +11,6 @@ type SearchYield = str | int
 type TagAttrs = List[Tuple[str, Optional[str]]]
 '''List of HTML tag attribute tuple pairs.'''
 
-#@dataclass
 class SearchIter(HtmlStreamIter[SearchYield]):
 	'''
 	Iterator for SS.lv search results.
@@ -46,6 +44,7 @@ class SearchIter(HtmlStreamIter[SearchYield]):
 	def __init__(self, discover_pagecount: bool = False):
 		HtmlStreamIter.__init__(self)
 		self.discover_pagecount = discover_pagecount
+
 
 	def __aiter__(self) -> AsyncIterator[str]:
 		return self
@@ -149,5 +148,4 @@ class SearchIter(HtmlStreamIter[SearchYield]):
 					self.queue.put_nowait(None)
 			case 'tr':
 				self.in_entry = False
-
 
