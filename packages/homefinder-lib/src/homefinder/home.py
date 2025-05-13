@@ -26,3 +26,6 @@ class Home:
 	price: Optional[str]			# in €
 	facilities: Optional[str]		# e.g. "Balcony, Parking"
 
+	def __str__(self):
+		return f'id: {self.id}\ncity: {self.city}\ndistrict: {self.district}\nstreet: {self.street}\narea: {self.area}\nprice: {self.price}\nfacilities: {self.facilities}'
+
