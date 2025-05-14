@@ -18,12 +18,12 @@ class Home:
 		facilities: Additional facilities that may come with the real estate.
 	'''
 
-	id: Optional[str]
-	city: Optional[str]				# e.g. "Riga"
-	district: Optional[str]			# e.g. "Centre"
-	street: Optional[str]			# e.g. "Klusa 7"
-	area: Optional[str] 			# in m²
-	price: Optional[str]			# in €
+	id: str
+	city: str				# e.g. "Riga"
+	district: str				# e.g. "Centre"
+	street: str				# e.g. "Klusa 7"
+	area: str	 			# in m²
+	price: str				# in €
 	facilities: Optional[str]		# e.g. "Balcony, Parking"
 
 	def __str__(self):
