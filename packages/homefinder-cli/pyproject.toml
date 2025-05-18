@@ -21,7 +21,7 @@ license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
 dependencies    = [
-	'homefinder-lib'
+	'homefinder ~= 0.0'
 ]
 
 [[project.authors]]
