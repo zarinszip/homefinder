@@ -12,7 +12,7 @@ from .structs import (
 	Home
 )
 
-from .source import (
+from .interfaces import (
 	Source,
 	SearchParams,
 	SearchIter
