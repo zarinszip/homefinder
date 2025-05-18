@@ -5,7 +5,10 @@ This includes a class for homes, a protocol for finding them
 online, and so on.
 '''
 
-from .home import (
+from .structs import (
+	Recurrence,
+	Price,
+	Address,
 	Home
 )
 

@@ -1,6 +1,6 @@
 from typing import *
 
-from .home import Home
+from .structs import Home
 
 type SearchParams = Optional[Mapping[str, Any]]
 type SearchIter   = AsyncIterator[Home]
