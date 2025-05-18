@@ -4,6 +4,12 @@
 ##
 
 
+[dependency-groups]
+
+dev = [
+	'pdoc ~= 15.0.0'
+]
+
 [tool.uv.workspace]
 
 members = [ './packages/*' ]
