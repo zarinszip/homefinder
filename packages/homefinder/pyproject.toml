@@ -13,7 +13,7 @@ build-backend = 'flit_core.buildapi'
 [project]
 
 name    = 'homefinder'
-version = '0.0.1'
+version = '1.0.0'
 
 readme      = './readme.md'
 description = 'Programmable interfaces for finding homes.'
