@@ -20,7 +20,7 @@ class Source(Protocol):
 	This is the primary protocol used in `homefinder` compatible projects
 	to integrate with real estate websites.
 
-	As this is only a protocol this class can not be constructed.
+	As this is only a protocol, this class can not be constructed.
 	'''
 
 	name: str
@@ -29,7 +29,7 @@ class Source(Protocol):
 	public_url: str
 	'''Visitable URL to the source.'''
 
-	async def get_home(self, id: Any) -> Optional[Home]:
+	async def resolve(self, id: Any) -> Optional[Home]:
 		'''Return a `Home` for the given identifier if found.'''
 		raise NotImplementedError
 

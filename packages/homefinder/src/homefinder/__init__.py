@@ -22,7 +22,7 @@ class MySource(homefinder.Source):
 	name       = 'My Example Source'
 	public_url = 'https://example.org'
 
-	async def get_home(self, id):
+	async def resolve(self, id):
 		return homefinder.Home(id, ...)  # Construct a Home for id.
 
 	async def search(self, params):
