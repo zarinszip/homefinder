@@ -1,5 +1,5 @@
 '''
-Structs for `homefinder` projects.
+Data structures for finding homes.
 
 This module consists of data structures for real estate property
 managment. These interfaces are more often then not automatically

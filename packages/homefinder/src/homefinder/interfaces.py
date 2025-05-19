@@ -1,37 +1,48 @@
+'''
+Functional interfaces for finding homes.
+
+This module centres primarily around the `Source` protocol, a interface
+defining how to retrieve `Home` instances from the web.
+'''
+
 from typing import *
 
-from .structs import Home
+from homefinder import Home
 
-type SearchParams = Optional[Mapping[str, Any]]
-type SearchIter   = AsyncIterator[Home]
+
+type SearchParams = dict[str, Any]
+'''Dictionary type for specifying search options.'''
 
 class Source(Protocol):
 	'''
-	Protocol for retrieving Home instances from online sources.
+	Protocol for retrieving `Home` instances from online sources.
 
-	Attributes:
-		name: The display name of the source.
-		public_url: An visitable URL to the source.
+	This is the primary protocol used in `homefinder` compatible projects
+	to integrate with real estate websites.
+
+	As this is only a protocol this class can not be constructed.
 	'''
 
-	name:       str
-	public_url: str
+	name: str
+	'''Display name of the source.'''
 
-	async def search(self, params: SearchParams) -> SearchIter:
+	public_url: str
+	'''Visitable URL to the source.'''
+
+	async def get_home(self, id: Any) -> Optional[Home]:
+		'''Return a `Home` for the given identifier if found.'''
+		raise NotImplementedError
+
+	async def search(self, params: Optional[SearchParams]) -> AsyncIterator[Home]:
 		'''
-		Find Homes.
+		Find `Home` instances.
 
 		Args:
 			params: Implementation specific dict that describes the
-			        means as how to conduct a search. Not guaranteed
-			        to always supply all required fields.
+		        	means as how to conduct a search.
 
 		Yields:
-			Instances of Home as found by the online source.
+			`Home` instances as provided by the online source.
 		'''
-		pass
-
-	async def get_home(self, id: Any) -> Optional[Home]:
-		'''Return an instance of Home for the given identifier.'''
-		pass
+		raise NotImplementedError
 

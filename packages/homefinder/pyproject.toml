@@ -1,6 +1,6 @@
 #:schema https://json.schemastore.org/pyproject.json
 ##
-## Functional interfaces for finding homes.
+## Programmable interfaces for finding homes.
 ##
 
 
@@ -16,7 +16,7 @@ name    = 'homefinder'
 version = '0.0.1'
 
 readme      = './readme.md'
-description = 'Functional interfaces for finding homes.'
+description = 'Programmable interfaces for finding homes.'
 license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
