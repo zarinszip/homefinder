@@ -52,13 +52,13 @@ class Price(NamedTuple):
 	currency: str
 	'''Monetary currency of the price.'''
 
-	recurrance: Recurrence = Recurrence.No
+	recurrence: Recurrence = Recurrence.No
 	'''Type of lease recurrance.'''
 
 	def __str__(self) -> str:
-		if self.recurrance == Recurrence.No:
+		if self.recurrence == Recurrence.No:
 			return f'{ self.value }{ self.currency }'
-		return f'{ self.value }{ self.currency }/{ self.recurrance.name }'		
+		return f'{ self.value }{ self.currency }/{ self.recurrence.name }'
 
 class Address(NamedTuple):
 	'''Named tuple of a geographical address.'''
@@ -66,7 +66,7 @@ class Address(NamedTuple):
 	code: str
 	'''Postal code of the address.'''
 
-	county: str
+	country: str
 	'''Country where the address is located.'''
 
 	city: str
@@ -107,4 +107,7 @@ class Home(NamedTuple):
 
 	images: list[str] = []
 	'''List of image URIs associated with the home.'''
+
+	def __str__(self):
+		return f'id: {self.id} \n address: {self.address} \n price: {self.price} \n area: {self.area} \n contact: {self.contact} \n source: {self.source} \n images: {self.images}'
 
