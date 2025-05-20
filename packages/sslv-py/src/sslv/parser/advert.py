@@ -102,12 +102,19 @@ class AdvertBuilder(HtmlStreamBuilder[hf.Home]):
 
 
 	def extract_id(self, url) -> str:
-		match = re.search(r'/([a-z0-9]+)\.html$', url)
+		'''
+		Returns extracted id from the url, using regular expressions
+		'''
+		match = re.search(r'/([a-z]+)\.html$', url)
 		if match:
 			return match.group(1)
 		return None
 
 	def feed(self, data, url) -> hf.Home:
+
+		if not 'real-estate' in url:
+			raise Exception("Provided URL is not a real estate")
+
 		super().feed(data)
 		self._id = self.extract_id(url)
 
