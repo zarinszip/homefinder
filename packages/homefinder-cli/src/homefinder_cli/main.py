@@ -90,13 +90,13 @@ async def main():
 
     print("Final search params:", search_params)
 
-    ss = sslv.Sludinajumi()
-    homes = []
-    async for home in ss.search(search_params):
-        print('------------------------------------')
-        print(home)
-        homes.append(home)
-    homes_to_excel(homes)
+    async with sslv.Sludinajumi() as ss:
+	    homes = []
+	    async for home in ss.search(search_params):
+	        print('------------------------------------')
+	        print(home)
+	        homes.append(home)
+	    homes_to_excel(homes)
 
 def homes_to_excel(homes: Union[hf.Home, List[hf.Home]], filename: str = "homes.xlsx"):
     if not isinstance(homes, list):
