@@ -7,8 +7,7 @@
 [dependency-groups]
 
 dev = [
-	"openpyxl>=3.1.5",
-	'pdoc ~= 15.0.0',
+	'pdoc ~= 15.0.0'
 ]
 
 [tool.uv.workspace]

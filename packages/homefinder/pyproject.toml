@@ -20,6 +20,9 @@ description = 'Programmable interfaces for finding homes.'
 license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
+dependencies    = [
+	'openpyxl ~= 3.1.0'
+]
 
 [[project.authors]]
 
