@@ -20,7 +20,7 @@ class AdvertBuilder(HtmlStreamBuilder[hf.Home]):
 		self._id = None
 		self._city = None
 		self._street = None
-		self._value = None
+		self._value = 0.0
 		self._currency = None
 		self._recurrence = hf.Recurrence.No
 		self._area = None
@@ -74,19 +74,30 @@ class AdvertBuilder(HtmlStreamBuilder[hf.Home]):
 						self._street = content
 
 					case 'tdo_8':
+						pattern = r'([\d\s]+)\s*([^\d\s/]+)(?:/([a-z]+))?\.?'
+						matches = re.search(pattern, content)
 
-						matches = re.search(r'([\d\s]+)\s?(.)/([a-z]+)\.', content)
-
-						self._value = matches.group(1)
-						self._currency = matches.group(2)
-						if not matches.group(3):
+						if not matches:
+							self._value = 0.0
+							self._currency = ''
 							self._recurrence = hf.Recurrence.No
 						else:
-							match matches.group(3):
+							number_str = matches.group(1).replace(' ', '').strip()
+							try:
+								self._value = float(number_str)
+							except ValueError:
+								self._value = 0.0  # fallback if conversion fails
+
+							self._currency = matches.group(2)
+							recurrence_str = matches.group(3)
+
+							match recurrence_str:
+								case 'day':
+									self._recurrence = hf.Recurrence.Day
 								case 'mon':
 									self._recurrence = hf.Recurrence.Month
-
-								# add more if necessary
+								case _:
+									self.reucrrence = hf.Recurrence.No
 
 					case 'tdo_3':
 
