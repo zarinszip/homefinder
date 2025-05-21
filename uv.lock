@@ -10,7 +10,10 @@ members = [
 ]
 
 [manifest.dependency-groups]
-dev = [{ name = "pdoc", specifier = "~=15.0.0" }]
+dev = [
+    { name = "openpyxl", specifier = ">=3.1.5" },
+    { name = "pdoc", specifier = "~=15.0.0" },
+]
 
 [[package]]
 name = "aiohappyeyeballs"
@@ -89,6 +92,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5a/b0/1367933a8532ee6ff8d63537de4f1177af4bff9f3e829baf7331f595bb24/attrs-25.3.0.tar.gz", hash = "sha256:75d7cefc7fb576747b2c81b4442d4d4a1ce0900973527c011d1030fd3bf4af1b", size = 812032, upload_time = "2025-03-13T11:10:22.779Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/77/06/bb80f5f86020c4551da315d78b3ab75e8228f89f0162f2c3a819e407941a/attrs-25.3.0-py3-none-any.whl", hash = "sha256:427318ce031701fea540783410126f03899a97ffc6f61596ad581ac2e40e3bc3", size = 63815, upload_time = "2025-03-13T11:10:21.14Z" },
+]
+
+[[package]]
+name = "et-xmlfile"
+version = "2.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d3/38/af70d7ab1ae9d4da450eeec1fa3918940a5fafb9055e934af8d6eb0c2313/et_xmlfile-2.0.0.tar.gz", hash = "sha256:dab3f4764309081ce75662649be815c4c9081e88f0837825f90fd28317d4da54", size = 17234, upload_time = "2024-10-25T17:25:40.039Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c1/8b/5fe2cc11fee489817272089c4203e679c63b570a5aaeb18d852ae3cbba6a/et_xmlfile-2.0.0-py3-none-any.whl", hash = "sha256:7a91720bc756843502c3b7504c77b8fe44217c85c537d85037f0f536151b2caa", size = 18059, upload_time = "2024-10-25T17:25:39.051Z" },
 ]
 
 [[package]]
@@ -284,6 +296,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/b9/3b/1599631f59024b75c4d6e3069f4502409970a336647502aaf6b62fb7ac98/multidict-6.4.3-cp313-cp313t-win32.whl", hash = "sha256:0ecdc12ea44bab2807d6b4a7e5eef25109ab1c82a8240d86d3c1fc9f3b72efd5", size = 41775, upload_time = "2025-04-10T22:19:43.707Z" },
     { url = "https://files.pythonhosted.org/packages/e8/4e/09301668d675d02ca8e8e1a3e6be046619e30403f5ada2ed5b080ae28d02/multidict-6.4.3-cp313-cp313t-win_amd64.whl", hash = "sha256:7146a8742ea71b5d7d955bffcef58a9e6e04efba704b52a460134fefd10a8208", size = 45946, upload_time = "2025-04-10T22:19:45.071Z" },
     { url = "https://files.pythonhosted.org/packages/96/10/7d526c8974f017f1e7ca584c71ee62a638e9334d8d33f27d7cdfc9ae79e4/multidict-6.4.3-py3-none-any.whl", hash = "sha256:59fe01ee8e2a1e8ceb3f6dbb216b09c8d9f4ef1c22c4fc825d045a147fa2ebc9", size = 10400, upload_time = "2025-04-10T22:20:16.445Z" },
+]
+
+[[package]]
+name = "openpyxl"
+version = "3.1.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "et-xmlfile" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/3d/f9/88d94a75de065ea32619465d2f77b29a0469500e99012523b91cc4141cd1/openpyxl-3.1.5.tar.gz", hash = "sha256:cf0e3cf56142039133628b5acffe8ef0c12bc902d2aadd3e0fe5878dc08d1050", size = 186464, upload_time = "2024-06-28T14:03:44.161Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c0/da/977ded879c29cbd04de313843e76868e6e13408a94ed6b987245dc7c8506/openpyxl-3.1.5-py2.py3-none-any.whl", hash = "sha256:5282c12b107bffeef825f4617dc029afaf41d0ea60823bbb665ef3079dc79de2", size = 250910, upload_time = "2024-06-28T14:03:41.161Z" },
 ]
 
 [[package]]

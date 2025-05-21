@@ -1,6 +1,9 @@
 import sys
 import asyncio
 import sslv
+from openpyxl import Workbook
+from typing import List, Union
+import homefinder as hf
 
 def parse_minmax(value: str) -> tuple[str, str]:
     parts = value.split(':')
@@ -88,9 +91,38 @@ async def main():
     print("Final search params:", search_params)
 
     ss = sslv.Sludinajumi()
+    homes = []
     async for home in ss.search(search_params):
         print('------------------------------------')
         print(home)
+        homes.append(home)
+    homes_to_excel(homes)
+
+def homes_to_excel(homes: Union[hf.Home, List[hf.Home]], filename: str = "homes.xlsx"):
+    if not isinstance(homes, list):
+        homes = [homes]
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Homes"
+
+    headers = ["ID", "Address", "Price", "Area", "Contact", "Source", "Images"]
+    ws.append(headers)
+
+    for home in homes:
+        row = [
+            home.id,
+            str(home.address),
+            str(home.price),
+            home.area,
+            home.contact,
+            str(home.source) if home.source else "",
+            ", ".join(home.images) if home.images else ""
+        ]
+        ws.append(row)
+
+    wb.save(filename)
+    print(f"Excel file saved as {filename}")
 
 if __name__ == "__main__":
     asyncio.run(main())
