@@ -13,7 +13,7 @@ from homefinder import Home
 type SearchParams = dict[str, Any]
 '''Dictionary type for specifying search options.'''
 
-class Source(Protocol):
+class Source(AsyncContextManager, Protocol):
 	'''
 	Protocol for retrieving `Home` instances from online sources.
 
@@ -28,6 +28,7 @@ class Source(Protocol):
 
 	public_url: str
 	'''Visitable URL to the source.'''
+
 
 	async def resolve(self, id: Any) -> Optional[Home]:
 		'''Return a `Home` for the given identifier if found.'''
