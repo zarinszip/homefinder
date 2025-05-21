@@ -90,6 +90,9 @@ class Sludinajumi(home.Source):
 	def __init__(self):
 		self.session = aiohttp.ClientSession()
 
+	async def __aexit__(self, exctype, excval, trace):
+		await self.session.close()
+
 	@staticmethod
 	def map_params(params: SludinajumiSearchParams) -> SludinajumiSearchForm:
 		return {
@@ -132,7 +135,7 @@ class Sludinajumi(home.Source):
 
 			async for chunk in response.content.iter_any():
 				result = builder.feed(decoder.decode(chunk), id)
-				if result != None:
+				if result is not None:
 					break
 
 			return result
@@ -141,12 +144,12 @@ class Sludinajumi(home.Source):
 		url = f'{ self.public_url }/en/real-estate/{ params['housing_type'] }/{ params['location'] }/search-result/'
 
 		init = await self.session.post(url, data = self.map_params(params))
-		init.release()
+		init.close()
 		if init.status != 200:
 			return
 
 		init = await self.session.get(f'{ self.public_url }/w_inc/chk.php?mm=1&c=1088&db=en&mode=1&g=1')
-		init.release()
+		init.close()
 		if init.status != 200:
 			return
 
