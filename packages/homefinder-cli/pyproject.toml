@@ -24,6 +24,10 @@ dependencies    = [
 	'homefinder'
 ]
 
+[project.scripts]
+
+homefinder = 'homefinder_cli.main:exec'
+
 [[project.authors]]
 
 name  = 'Martins Zariņš'
@@ -34,5 +38,3 @@ email = 'pasts@zarins.zip'
 name  = 'Rauls Ulvis Grimza'
 email = 'rrauls12345@gmail.com'
 
-[project.scripts]
-homefinder = "homefinder_cli.main:main"

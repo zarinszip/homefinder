@@ -123,5 +123,8 @@ def homes_to_excel(homes: Union[hf.Home, List[hf.Home]], filename: str = "homes.
 
     wb.save(filename)
 
+def exec():
+	asyncio.run(main())
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    exec()
