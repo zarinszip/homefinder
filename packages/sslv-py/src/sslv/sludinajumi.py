@@ -131,7 +131,7 @@ class Sludinajumi(home.Source):
 			result  = None
 
 			async for chunk in response.content.iter_any():
-				result = builder.feed(decoder.decode(chunk))
+				result = builder.feed(decoder.decode(chunk), id)
 				if result != None:
 					break
 
@@ -140,13 +140,14 @@ class Sludinajumi(home.Source):
 	async def search(self, params: SludinajumiSearchParams) -> AsyncIterator[home.Home]:
 		url = f'{ self.public_url }/en/real-estate/{ params['housing_type'] }/{ params['location'] }/search-result/'
 
-		post = await self.session.post(
-			url  = url,
-			data = self.map_params(params),
-			allow_redirects = False
-		)
-		post.release()
-		if post.status != 302:
+		init = await self.session.post(url, data = self.map_params(params))
+		init.release()
+		if init.status != 200:
+			return
+
+		init = await self.session.get(f'{ self.public_url }/w_inc/chk.php?mm=1&c=1088&db=en&mode=1&g=1')
+		init.release()
+		if init.status != 200:
 			return
 
 		page  = 1
@@ -155,7 +156,7 @@ class Sludinajumi(home.Source):
 			async with self.session.get(f'{ url }page{ page }.html') as response:
 				if response.status != 200:
 					return
-				print(await response.text())
+
 				first = page == 1
 				iter  = parser.SearchIter(
 					inner = response.content.iter_any(),
@@ -163,6 +164,7 @@ class Sludinajumi(home.Source):
 				)
 
 				async for id in iter:
+					print(id)
 					home = await self.resolve(id)
 					if home is not None:
 						yield home
