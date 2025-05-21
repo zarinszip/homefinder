@@ -42,6 +42,7 @@ type SludinajumiSearchForm = TypedDict('SludinajumiSearchForm', {
 	'sort': str,                         # Sort
 
 	'txt': str,  # Text query
+	'street': str,
 
 	'topt[1][min]': str,  # Rooms
 	'topt[1][max]': str,
@@ -96,13 +97,9 @@ class Sludinajumi(home.Source):
 	@staticmethod
 	def map_params(params: SludinajumiSearchParams) -> SludinajumiSearchForm:
 		return {
-			'topt[1631]': params.get('catastral_num', ''),
-
-		        'sid':  params.get('deal_type', ''),
-		        'pr':   params.get('deal_age', '0'),
-        		'sort': params.get('sort', '0'),
-
 		        'txt': params.get('query', ''),
+
+			'opt[11][]': params.get('street', []),
 
 		        'topt[1][min]': params.get('rooms', ('0', '0'))[0],
 		        'topt[1][max]': params.get('rooms', ('0', '0'))[1],
@@ -110,15 +107,22 @@ class Sludinajumi(home.Source):
 		        'topt[3][max]': params.get('area',  ('', ''))[1],
 		        'topt[4][min]': params.get('floor', ('', ''))[0],
 		        'topt[4][max]': params.get('floor', ('', ''))[1],
+
+			'opt[367]': '8041' if params.get('lift', False) else '',
+
+			'opt[6][]': params.get('historical_period', []),
+			'opt[2][]': params.get('material', []),
+
+			'topt[1631]': params.get('catastral_num', ''),
+
+			'opt[1734][]': params.get('facilieties', []),
+
 		        'topt[8][min]': params.get('price', ('', ''))[0],
 		        'topt[8][max]': params.get('price', ('', ''))[1],
 
-			'opt[6][]': ','.join(params.get('historical_period', [])),
-
-			'opt[2][]':    ','.join(params.get('material', [])),
-			'opt[1734][]': ','.join(params.get('facilieties', [])),
-
-			'opt[367]': '8041' if params.get('lift', False) else '',
+		        'sid':  params.get('deal_type', ''),
+		        'pr':   params.get('deal_age', '0'),
+        		'sort': params.get('sort', '0'),
 
 			'btn': 'Search'
 		}
@@ -143,14 +147,13 @@ class Sludinajumi(home.Source):
 	async def search(self, params: SludinajumiSearchParams) -> AsyncIterator[home.Home]:
 		url = f'{ self.public_url }/en/real-estate/{ params['housing_type'] }/{ params['location'] }/search-result/'
 
-		init = await self.session.post(url, data = self.map_params(params))
-		init.close()
-		if init.status != 200:
-			return
-
-		init = await self.session.get(f'{ self.public_url }/w_inc/chk.php?mm=1&c=1088&db=en&mode=1&g=1')
-		init.close()
-		if init.status != 200:
+		post = await self.session.post(
+			url  = url,
+			data = self.map_params(params),
+			allow_redirects = False
+		)
+		post.close()
+		if post.status != 302:
 			return
 
 		page  = 1
@@ -167,7 +170,6 @@ class Sludinajumi(home.Source):
 				)
 
 				async for id in iter:
-					print(id)
 					home = await self.resolve(id)
 					if home is not None:
 						yield home
