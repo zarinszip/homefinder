@@ -14,3 +14,10 @@ __pycache__
 /.venv
 /dist
 
+
+#
+# Output files
+#
+
+*.xlsx
+
