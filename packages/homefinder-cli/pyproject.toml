@@ -21,7 +21,8 @@ license     = 'GPL-2.0-only'
 
 requires-python = '~= 3.12'
 dependencies    = [
-	'homefinder'
+	'homefinder',
+	'openpyxl ~= 3.1.0'
 ]
 
 [project.scripts]

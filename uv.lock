@@ -164,12 +164,6 @@ wheels = [
 name = "homefinder"
 version = "1.0.0"
 source = { editable = "packages/homefinder" }
-dependencies = [
-    { name = "openpyxl" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "openpyxl", specifier = "~=3.1.0" }]
 
 [[package]]
 name = "homefinder-cli"
@@ -177,10 +171,14 @@ version = "0.0.1"
 source = { editable = "packages/homefinder-cli" }
 dependencies = [
     { name = "homefinder" },
+    { name = "openpyxl" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "homefinder" }]
+requires-dist = [
+    { name = "homefinder" },
+    { name = "openpyxl", specifier = "~=3.1.0" },
+]
 
 [[package]]
 name = "idna"
