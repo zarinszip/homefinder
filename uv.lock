@@ -162,7 +162,7 @@ wheels = [
 
 [[package]]
 name = "homefinder"
-version = "1.0.0"
+version = "1.0.1"
 source = { editable = "packages/homefinder" }
 
 [[package]]
