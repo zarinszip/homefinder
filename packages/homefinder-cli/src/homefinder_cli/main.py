@@ -122,7 +122,6 @@ def homes_to_excel(homes: Union[hf.Home, List[hf.Home]], filename: str = "homes.
         ws.append(row)
 
     wb.save(filename)
-    print(f"Excel file saved as {filename}")
 
 if __name__ == "__main__":
     asyncio.run(main())
