@@ -61,7 +61,7 @@ type SludinajumiSearchForm = TypedDict('SludinajumiSearchForm', {
 
 	'btn': Literal['Search']  # Initiator
 })
-	
+
 
 
 class Sludinajumi(home.Source):
