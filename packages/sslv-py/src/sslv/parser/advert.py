@@ -110,13 +110,9 @@ class AdvertBuilder(HtmlStreamBuilder[hf.Home]):
 			return match.group(1)
 		return None
 
-	def feed(self, data, url) -> hf.Home:
-
-		if not 'real-estate' in url:
-			raise Exception("Provided URL is not a real estate")
-
+	def feed(self, data, id) -> hf.Home:
 		super().feed(data)
-		self._id = self.extract_id(url)
+		self._id = id
 
 		return hf.Home (
 			id = self._id,
