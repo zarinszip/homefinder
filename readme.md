@@ -59,6 +59,87 @@ pdoc <module>
 ```
 
 
+## Definētas datu struktūras
+
+Galvenā projekta datu struktūra ir `homefinder.Home`. `Home` ir
+atvasinājums no `typing.NamedTuple` un apraksta īpašības, kas piemīt
+nekustamam īpašumam. To sastāvā arī ir mazākas klases, tostarp `Price`
+un `Address`.
+
+```python
+class Home(NamedTuple):
+	'''
+	Named tuple of a real estate property.
+
+	This is the central interface used by `homefinder` compatible
+	projects describing the data attributes a real estate property
+	is expected to hold.
+	'''
+
+	id: str
+	'''Unique identifier of the home.'''
+
+	address: Address
+	'''Home address.'''
+
+	price: Price
+	'''Monetary price of the home.'''
+
+	area: float
+	'''Square meter area of the home.'''
+
+	contact: str
+	'''URI for contacting the home seller.'''
+
+	source: Optional['homefinder.Source'] = None
+	'''Source of the home instance.'''
+
+	images: list[str] = []
+	'''List of image URIs associated with the home.'''
+```
+
+Lai iegūtu `Home` instances no interneta `homefinder` pakete definē
+`Source` protokola klasi. Pašu `Source` klasi nevar inicializēt, bet
+visas klases, kas to atvasina un implementē nepieciešamās metodes,
+var tikt lietotas iekš metodes definīcijās, kas lieto `Source` tipu.
+
+```python
+class Source(AsyncContextManager, Protocol):
+	'''
+	Protocol for retrieving `Home` instances from online sources.
+
+	This is the primary protocol used in `homefinder` compatible projects
+	to integrate with real estate websites.
+
+	As this is only a protocol, this class can not be constructed.
+	'''
+
+	name: str
+	'''Display name of the source.'''
+
+	public_url: str
+	'''Visitable URL to the source.'''
+
+
+	async def resolve(self, id: Any) -> Optional[Home]:
+		'''Return a `Home` for the given identifier if found.'''
+		raise NotImplementedError
+
+	async def search(self, params: Optional[SearchParams]) -> AsyncIterator[Home]:
+		'''
+		Find `Home` instances.
+
+		Args:
+			params: Implementation specific dict that describes the
+			        means as how to conduct a search.
+
+		Yields:
+			`Home` instances as provided by the online source.
+		'''
+		raise NotImplementedError
+```
+
+
 ## Izmantotās bibliotēkas un rīki
 
 ### Komandrindas rīki
