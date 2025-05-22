@@ -27,43 +27,19 @@ async def main():
 
     while i < len(raw_args):
         arg = raw_args[i]
-        if not end_of_args:
-            match arg:
-                case '--filter' | '-f':
-                    i += 1
-                    while i < len(raw_args) and '=' in raw_args[i]:
-                        key, val = raw_args[i].split('=', 1)
-                        match key:
-                            case 'rooms' | 'area' | 'floor' | 'price':
-                                search_params[key] = parse_minmax(val)
-                            case 'historical_period' | 'material' | 'facilities':
-                                search_params[key] = parse_list(val)
-                            case 'lift':
-                                search_params[key] = parse_bool(val)
-                            case _:
-                                search_params[key] = val
-                        i += 1
-                    continue
-                case '--module':
-                    i += 2
-                case '--':
-                    end_of_args = True
+        if '=' in arg:
+            key, val = arg.split('=', 1)
+            match key:
+                case 'rooms' | 'area' | 'floor' | 'price':
+                    search_params[key] = parse_minmax(val)
+                case 'historical_period' | 'material' | 'facilities':
+                    search_params[key] = parse_list(val)
+                case 'lift':
+                    search_params[key] = parse_bool(val)
+                case 'location':
+                     search_params[key] = val.replace('_', '-').replace('.', '')
                 case _:
-                    i += 1
-        else:
-            if '=' in arg:
-                key, val = arg.split('=', 1)
-                match key:
-                    case 'rooms' | 'area' | 'floor' | 'price':
-                        search_params[key] = parse_minmax(val)
-                    case 'historical_period' | 'material' | 'facilities':
-                        search_params[key] = parse_list(val)
-                    case 'lift':
-                        search_params[key] = parse_bool(val)
-                    case 'location':
-                        search_params[key] = val.replace('_', '-').replace('.', '')
-                    case _:
-                        search_params[key] = val
+                     search_params[key] = val
             i += 1
 
     async with sslv.Sludinajumi() as ss:
