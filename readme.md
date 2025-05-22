@@ -1,6 +1,7 @@
 # `homefinder`
 
 > Martins Zariņš (241RDB186)
+
 > Rauls Ulvis Grimza
 
 
@@ -23,6 +24,33 @@ komandrindas, dod tos `homefinder.Source` instancei (šeit `sslv.Sludinajumi`)
 un saglabā iegūtos nekustamos īpašumus Excel failā.
 
 
+## Programmas izmantošana
+
+Pirms lietosanas manuāli jāinstalē projekta paketes. Tas automātiski
+lejupielādēs nepieciešamās [PYPI bibliotēkas](#pypi-bibliotēkas), kā
+arī pataisīs `homefinder` komandu pieejamu.
+
+```sh
+pip install -e packages/*
+```
+
+Pēc veiksmīgas ienstalēšanas `homefinder` lietojums izskatās sekojoši:
+
+```sh
+homefinder \
+	housing_type=<flats|homes-summer-residences|offices|...> \
+	location=<riga/agenskalns|jurmala|...> \
+	[price=min:max] \
+	[area=min:max] \
+	[rooms=min:max] \
+	[floor=min:max] \
+	[filtri...]
+```
+
+Izpildot komandu, tiks ģenerēts `homes.xlsx` fails, kas satur visus
+atrastos sludinājumus.
+
+
 ## Izmantotās bibliotēkas un rīki
 
 ### Komandrindas rīki
@@ -40,7 +68,7 @@ un saglabā iegūtos nekustamos īpašumus Excel failā.
 - `html.parser` HTML lasītājs.
 - `re` regulārās izteiksmes.
 - `typing` koda tipu definīcijas.
-= `queue` datu klase.
+- `queue` datu klase.
 
 ### PYPI bibliotēkas
 
