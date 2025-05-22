@@ -4,6 +4,25 @@
 > Rauls Ulvis Grimza
 
 
+## Projekta uzdevums
+
+`homefinder` ir vairāku mazāku projektu kolekcija, kas, kopā strādājot,
+atļauj automatizēt nekustamā īpašuma meklēšanu, analizēšanu un filtrēšanu.
+
+Pythona pakete vārdā `homefinder` definē tipētas datu struktūras, kas definē
+kādas īpašības piemīt nekustamam īpašumam, kā tie sadarbojās savstarpā un kā
+tos var atrast no tīkla avotiem. Šīs datu struktūrās ir lielākoties `Protocol`
+un `NamedTuple` tipa, kas ir Python standarta bibliotēkas `typing` sastāvā.
+
+`sslv-py` ir praktiska `homefinder.Source` implementācija, iegūstot `homefinder.Home`
+instances no SS.LV mājaslapas satura.
+
+`homefinder-cli` ir komandrindas rīks, kas ļauj lietotājam izmantot pārējās
+projekta bibliotēkas standartizētā veidā. Tas iegūst argumentus no
+komandrindas, dod tos `homefinder.Source` instancei (šeit `sslv.Sludinajumi`)
+un saglabā iegūtos nekustamos īpašumus Excel failā.
+
+
 ## Izmantotās bibliotēkas un rīki
 
 ### Komandrindas rīki
@@ -17,8 +36,8 @@
 ### Python standarta bibliotēka
 
 - `asyncio` `async`/`await`implementācija.
-- `encodings` UTF-8 dekoders.
-- `html` HTML lasītājs.
+- `encodings.utf_8` UTF-8 dekoders.
+- `html.parser` HTML lasītājs.
 - `re` regulārās izteiksmes.
 - `typing` koda tipu definīcijas.
 = `queue` datu klase.
