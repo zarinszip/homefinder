@@ -50,6 +50,14 @@ homefinder \
 Izpildot komandu, tiks ģenerēts `homes.xlsx` fails, kas satur visus
 atrastos sludinājumus.
 
+Iekšrindas dokumentāciju var apskatīt, lietojot `pdoc` rīku. Pēc tās
+ielādes dokumentāciju var atvert interneta pārlūkā, ievadod sekojošo
+komandu:
+
+```sh
+pdoc <module>
+```
+
 
 ## Izmantotās bibliotēkas un rīki
 
