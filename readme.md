@@ -1,7 +1,7 @@
 # `homefinder`
 
 > Martins Zariņš (241RDB186)
-> Rauls Ulvis Grimza
+> Rauls Ulvis Grimza (241RDB178)
 
 
 ## Projekta uzdevums
