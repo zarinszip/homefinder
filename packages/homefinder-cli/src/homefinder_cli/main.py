@@ -31,19 +31,6 @@ async def main():
             match arg:
                 case '--filter' | '-f':
                     i += 1
-                    while i < len(raw_args) and '=' in raw_args[i]:
-                        key, val = raw_args[i].split('=', 1)
-                        match key:
-                            case 'rooms' | 'area' | 'floor' | 'price':
-                                search_params[key] = parse_minmax(val)
-                            case 'historical_period' | 'material' | 'facilities':
-                                search_params[key] = parse_list(val)
-                            case 'lift':
-                                search_params[key] = parse_bool(val)
-                            case _:
-                                search_params[key] = val
-                        i += 1
-                    continue
                 case '--module':
                     i += 2
                 case '--':
@@ -67,12 +54,12 @@ async def main():
             i += 1
 
     async with sslv.Sludinajumi() as ss:
-	    homes = []
-	    async for home in ss.search(search_params):
-	        print('------------------------------------')
-	        print(home)
-	        homes.append(home)
-	    homes_to_excel(homes)
+        homes = []
+        async for home in ss.search(search_params):
+            print('------------------------------------')
+            print(home)
+            homes.append(home)
+        homes_to_excel(homes)
 
 def homes_to_excel(homes: Union[hf.Home, List[hf.Home]], filename: str = "homes.xlsx"):
     if not isinstance(homes, list):
